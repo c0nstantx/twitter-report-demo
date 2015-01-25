@@ -1,6 +1,7 @@
 {
   "require" : {
-    "abraham/twitteroauth": "*"
+    "abraham/twitteroauth": "*",
+    "twig/twig": "~1.0"
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*"
