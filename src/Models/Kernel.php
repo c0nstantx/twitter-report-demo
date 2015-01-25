@@ -8,14 +8,14 @@ class Kernel
 {
     protected $tweetConnector;
 
-    protected $renderer;
+    protected $renderEngine;
 
     protected $response;
 
-    public function __construct($config)
+    public function __construct($config, \Twig_Environment $twig)
     {
         $this->startSession();
-        $this->renderer = new Renderer();
+        $this->renderEngine = $twig;
         $twitterOauth = new TwitterOAuth(CONSUMER_KEY, CONSUMER_SECRET);
         $this->tweetConnector = new TweetConnector($twitterOauth);
     }
@@ -31,7 +31,7 @@ class Kernel
                 $status = $this->tweetConnector->verifyUser($this->get('oauth_verifier'));
                 if (!$status) {
                     $this->clearSession();
-                    $this->renderer->renderError("Error authorize user");
+                    $this->renderEngine->render('error.html', array('html' => 'Error authorize user');
                 } else {
                     $this->tweetConnector->redirect(TWEET_DEMO_REPORT_URL);
                 }
@@ -39,16 +39,17 @@ class Kernel
             if ($this->get('handle')) {
                 $reportData = $this->tweetConnector
                 ->getHandleData($this->get('handle'), $this->get('limit'));
-                return $this->renderer->renderReport($reportData);
+                return $this->renderEngine->render('report.html', array('data'=>$reportData));
             }
-            return $this->renderer->renderHandleForm();
+            return $this->renderEngine->render('handler_form.html');
         } else {
             $token = $this->tweetConnector->requestToken();
             if ($token === false) {
                 $this->clearSession();
-                return $this->renderer
-                ->renderError("There was an error communicating with Twitter.<br>
-                    {$this->tweetConnector->response['response']}");
+                return $this->renderEngine->render('error.html', 
+                    array(
+                        'html' => "There was an error communicating with Twitter.<br>
+                        {$this->tweetConnector->response['response']}"));
             }
         }
     }

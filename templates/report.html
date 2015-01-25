@@ -1,0 +1,20 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+{% if data.errors %}
+  {% include 'partials/error.html' with {'html': data.errors[0].message} only %}
+{% else %}
+  <img src="{{data.banner.url}}" height="{{data.banner.h}}" width="{{data.banner.w}}" /><br>
+  Total Posts: {{data.profile.statuses_count}}<br>
+  Total Posts: {{data.profile.followers_count}}<br>
+  Total Posts: {{data.profile.friends_count}}<br>
+  Total Posts: {{data.profile.favourites_count}}<br>
+  Total Posts: {{data.profile.status.retweet_count}}<br>
+  <h1>Latest Tweets</h1>
+  <ul>
+    {% for tweet in data.tweets %}
+      <li>{{tweet.text}}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% endblock %}

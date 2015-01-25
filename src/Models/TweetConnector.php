@@ -81,7 +81,6 @@ class TweetConnector
             array('screen_name'=>$handle, 'count'=>$limit));
         return array(
             'profile' => $profile,
-            'latest_retweets' => $latestRetweets,
             'banner' => $banner->sizes->web,
             'tweets' => $tweets
             );
