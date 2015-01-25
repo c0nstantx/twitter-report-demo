@@ -26,9 +26,11 @@ class Renderer
         if (isset($tweetData->errors)) {
             return $this->renderError($tweetData->errors[0]->message);
         }
-        $text = "<h1>Latest Tweets</h1>
+        $text = "";
+        $text .= "<img src='{$tweetData['banner']->url}' height='{$tweetData['banner']->h}' width='{$tweetData['banner']->w}' />";
+        $text .= "<h1>Latest Tweets</h1>
         <ul>";
-        foreach ($tweetData as $tweet) {
+        foreach ($tweetData['tweets'] as $tweet) {
             $text .= "<li>{$tweet->text}</li>";
         }
         $text .= "</ul>";
