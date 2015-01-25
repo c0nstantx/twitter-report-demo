@@ -1,9 +1,13 @@
 {
   "require" : {
-    "silex/silex": "~1.1",
-    "monolog/monolog": "~1.7"
+    "abraham/twitteroauth": "*"
   },
   "require-dev": {
     "heroku/heroku-buildpack-php": "*"
-  }
+  },
+  "autoload": {
+    "psr-4": {
+      "Rocket\\": "src/"
+    }
+  }  
 }

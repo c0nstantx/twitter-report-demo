@@ -1,22 +1,11 @@
 <?php
 
 require('../vendor/autoload.php');
+$config = require('../config/settings.inc.php');
 
-$app = new Silex\Application();
-$app['debug'] = true;
+use Rocket\Models\Kernel;
 
-// Register the monolog logging service
-$app->register(new Silex\Provider\MonologServiceProvider(), array(
-  'monolog.logfile' => 'php://stderr',
-));
+$kernel = new Kernel($config);
+$response = $kernel->parseRequest();
 
-// Our web handlers
-
-$app->get('/', function() use($app) {
-  $app['monolog']->addDebug('logging output.');
-  return 'Hello';
-});
-
-$app->run();
-
-?>
+echo $response;
