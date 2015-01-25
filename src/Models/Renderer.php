@@ -26,8 +26,17 @@ class Renderer
         if (isset($tweetData->errors)) {
             return $this->renderError($tweetData->errors[0]->message);
         }
+        $profile = $tweetData['profile'];
+        // echo '<pre>';
+        // print_r($profile);
+        // exit;
         $text = "";
         $text .= "<img src='{$tweetData['banner']->url}' height='{$tweetData['banner']->h}' width='{$tweetData['banner']->w}' />";
+        $text .= "<br>Total Posts: {$profile->statuses_count}";
+        $text .= "<br>Total Followers: {$profile->followers_count}";
+        $text .= "<br>Total Following: {$profile->friends_count}";
+        $text .= "<br>Total Favorites: {$profile->favourites_count}";
+        $text .= "<br>Total Retweets: {$profile->status->retweet_count}";
         $text .= "<h1>Latest Tweets</h1>
         <ul>";
         foreach ($tweetData['tweets'] as $tweet) {

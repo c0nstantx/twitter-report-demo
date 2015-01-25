@@ -70,14 +70,18 @@ class TweetConnector
         if (null === $limit || !is_numeric($limit)) {
             $limit = DEFAULT_TWEET_LIMIT;
         }
+        $profile = $this->connection->get("users/show", 
+            array('screen_name'=>$handle));
+        if (isset($profile->errors)) {
+            return $profile;
+        }
         $banner = $this->connection->get("users/profile_banner", 
             array('screen_name'=>$handle));
-        if (isset($banner->errors)) {
-            return $banner;
-        }
         $tweets = $this->connection->get("statuses/user_timeline", 
             array('screen_name'=>$handle, 'count'=>$limit));
         return array(
+            'profile' => $profile,
+            'latest_retweets' => $latestRetweets,
             'banner' => $banner->sizes->web,
             'tweets' => $tweets
             );
