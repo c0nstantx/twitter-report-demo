@@ -1,0 +1,33 @@
+  <img src="images/activity_bg.png" />
+  <div class="activity-block col-xs-12">
+    {% for i in range(1, 7) %}
+    <div class="activity-line col-xs-12">
+      {% for j in range(0, 23) %}
+      {% if data.processed_data.calendar_activities[i][j] %}
+      {% if data.processed_data.calendar_activities[i][j] < 0.2 %}
+      <div class="activity-square activity-1"></div>
+      {% elseif data.processed_data.calendar_activities[i][j] < 0.4 %}
+      <div class="activity-square activity-2"></div>
+      {% elseif data.processed_data.calendar_activities[i][j] < 0.6 %}
+      <div class="activity-square activity-3"></div>
+      {% else %}
+      <div class="activity-square activity-4"></div>
+      {% endif %}
+      {% else %}
+      <div class="activity-square activity-0"></div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endfor %}
+    <div class="activity-legend col-xs-5 col-xs-offset-7">
+      <div class="col-xs-2">Less</div>
+      <div class="col-xs-8">
+        <div class="activity-square activity-0"></div>
+        <div class="activity-square activity-1"></div>
+        <div class="activity-square activity-2"></div>
+        <div class="activity-square activity-3"></div>
+        <div class="activity-square activity-4"></div>
+      </div>
+      <div class="col-xs-2">More</div>
+    </div>
+  </div>

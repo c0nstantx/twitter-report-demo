@@ -4,42 +4,22 @@
 {% if data.errors %}
   {% include 'partials/error.html' with {'html': data.errors[0].message} only %}
 {% else %}
-  <img src="{{data.profile.profile_banner_url}}/web" /><br>
-  Total Posts: {{data.profile.statuses_count}}<br>
-  Total Followers: {{data.profile.followers_count}}<br>
-  Total Following: {{data.profile.friends_count}}<br>
-  Total Favorites: {{data.profile.favourites_count}}<br>
-  <hr>
-  Total Retweets: {{data.processed_data.retweets}}<br>
-  New Photos/Videos: {{data.processed_data.media}}<br>
-  Favorits: {{data.profile.favourites_count}}<br>
-  <hr>
-  <h1>Distribution</h1>
-  PC: {{((data.processed_data.display_web / data.processed_data.display_total)*100)|round(1)}}%<br>
-  Mobile: {{((data.processed_data.display_mobile / data.processed_data.display_total)*100)|round(1)}}%<br>
-  Other: {{((data.processed_data.display_other / data.processed_data.display_total)*100)|round(1)}}%<br>
-  <hr>
-  <h1>Top Tweets</h1>
-  <ul>
-    {% for tweet in data.processed_data.top_retweets %}
-      <li>{{tweet.text}}</li>
-    {% endfor %}
-  </ul>
-  <hr>
-  <h1>Tweet Activity</h1>
-  {% for i in range(1, 7) %}
-    {{i}}: 
-    {% for j in range(0, 23) %}
-      {% if data.processed_data.calendar_activities[i][j] %}
-        {{data.processed_data.calendar_activities[i][j]}}
-      {% else %}
-        0
-      {% endif %}
-    {% endfor %}
-    <br>
-  {% endfor %}
-  Most Popular Day: {{data.processed_data.top_day}}<br>
-  Most Popular Time: {{data.processed_data.top_time}}<br>
+  {% include 'partials/report_banner.html' %}
+  <div class="sub-section">
+    {% include 'partials/actions.html' %}
+  </div>
+  <div class="sub-section">
+    {% include 'partials/tweet_distribution.html' %}
+  </div>
+  <div class="sub-section">
+    {% include 'partials/top_tweets.html' %}
+  </div>
+  <div class="sub-section">
+    {% include 'partials/tweet_activity.html' %}
+  </div>
+  <div class="sub-section">
+    {% include 'partials/most_popular.html' %}
+  </div>
   <hr>
   <h1>Engagement</h1>
   Total engagement: {{data.processed_data.favorite_count + data.processed_data.retweet_count}}<br>

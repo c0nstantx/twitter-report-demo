@@ -1,0 +1,170 @@
+#content {
+  width: 821px;
+  margin: auto;
+  background-color: #f3f3f5;
+}
+#footer {
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+}
+.banner_image {
+  width: 100%;
+  margin-bottom: 20px;
+  height: 300px;
+}
+.badge_header {
+  position: absolute;
+  top: 100px;
+  left: 65%;
+}
+.handle_icon {
+  position: absolute;
+  top: 300px;
+  width: 150px;
+  height: 150px;
+  background-color: white;
+  padding: 10px;
+  left: 27%;
+}
+.sub-header-title {
+  width: 100%;
+  font-size: 1.2em;
+  text-align: center;
+  line-height: .5em;
+}
+.sub-header-content {
+  width: 100%;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+}
+.sub-section {
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+  float: left;
+}
+.total-retweets {
+  background-image: url('../images/retweets_bg.png');
+  font-size: 3em;
+  color: #28aae1;
+  float: left;
+  height: 271px;
+  width: 228px;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding-top: 100px;
+}
+.new-media {
+  background-image: url('../images/new_media_bg.png');
+  font-size: 3em;
+  color: #d3483e;
+  float: left;
+  height: 271px;
+  width: 228px;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding-top: 100px;
+  margin: 0px 68px;
+}
+.favorites {
+  background-image: url('../images/favorites_bg.png');
+  font-size: 3em;
+  color: #cc9b04;
+  float: left;
+  height: 271px;
+  width: 228px;
+  background-repeat: no-repeat;
+  text-align: center;
+  padding-top: 100px;
+}
+.distribution-percentage {
+  font-size: 3em;
+  font-weight: bold;
+  color: #d3483e;
+  text-align: center;
+}
+.top-tweet {
+  width: 94%;
+  min-height: 100px;
+  text-align: center;
+  float: left;
+  margin: 15px 3%;
+}
+.top-tweet .badge, .top-tweet .body, .top-tweet .retweets-block {
+  background-color: white;
+  min-height: 150px;
+  float: left;
+}
+.top-tweet .badge {
+  padding: 20px 20px 0px 20px;
+}
+.top-tweet .body {
+  padding: 20px 20px 0px 20px;
+  width: 64%;
+  font-weight: bolder;
+}
+.top-tweet .body .tweet-date{
+  color: #CCCCCC;
+  float: left;
+  font-weight: bold;
+  font-size: 0.9em;
+  text-align: left;
+  margin-bottom: 5px;
+}
+.top-tweet .retweets-block {
+  padding: 20px 20px 0px 20px;
+  margin-left: 1%;
+  width: 20%;
+  font-size: 3em;
+  font-weight: bold;
+}
+.top-tweet .retweets-block .count {
+  height: 50%;
+}
+.top-tweet .retweets-block .icon {
+  height: 50%;
+  color: #6db9b9;
+}
+.activity-block {
+  margin: 20px 0px;
+}
+.activity-square {
+  width: 20px;
+  height: 20px;
+  margin: 3px;
+  float: left;
+}
+.activity-0 {
+  background-color: #ebebeb;
+}
+.activity-1 {
+  background-color: #70f3ff;
+}
+.activity-2 {
+  background-color: #3093ff;
+}
+.activity-3 {
+  background-color: #061ce1;
+}
+.activity-4 {
+  background-color: #000389;
+}
+.activity-legend {
+  text-align: right;
+  margin-top: 20px;
+}
+.popular-heading {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.popular-content {
+  font-weight: bold;
+  font-size: 3.7em;
+  text-align: center;
+  margin-top: 10px;
+}
+.popular-content .popular-value {
+  color: #28aae1;
+}

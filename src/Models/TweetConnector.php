@@ -19,7 +19,8 @@ class TweetConnector
         4 => "Thursday",
         5 => "Friday",
         6 => "Saturday",
-        7 => "Sunday"
+        7 => "Sunday",
+        8 => "N/A"
         );
 
     public function __construct(TwitterOAuth $twitterOAuth)
@@ -209,8 +210,17 @@ class TweetConnector
         $topRetweets = array_slice(array_reverse($topRetweets), 0, 3);
 
         /* Extract top day and hour */
-        $topDay = array_search(max($daysActivity), $daysActivity);
-        $topTime = array_search(max($timeActivity), $timeActivity);
+        if (count($daysActivity)) {
+            $topDay = array_search(max($daysActivity), $daysActivity);
+        } else {
+            $topDay = 8;
+        }
+
+        if (count($timeActivity)) {
+            $topTime = array_search(max($timeActivity), $timeActivity);
+        } else {
+            $topTime = "N/A";
+        }
 
         /* Extract peak engagement tweet metrics */
         $peakEngagementKeys = array_keys($peakEngagement);

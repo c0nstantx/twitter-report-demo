@@ -26,39 +26,44 @@ class Kernel
      */
     public function parseRequest()
     {
-        if ($this->get('clear_session')) {
-            $this->clearSession();
-            $this->tweetConnector->redirect(TWEET_DEMO_REPORT_URL);
-        }
+        try {
+            if ($this->get('clear_session')) {
+                $this->clearSession();
+                $this->tweetConnector->redirect(TWEET_DEMO_REPORT_URL);
+            }
 
-        if ($this->tweetConnector->userIsAuthorized()) {
-            if ($this->get('oauth_verifier')) {
-                $status = $this->tweetConnector->verifyUser(
-                    $this->get('oauth_verifier'));
-                if (!$status) {
+            if ($this->tweetConnector->userIsAuthorized()) {
+                if ($this->get('oauth_verifier')) {
+                    $status = $this->tweetConnector->verifyUser(
+                        $this->get('oauth_verifier'));
+                    if (!$status) {
+                        $this->clearSession();
+                        $this->renderEngine->render('error_page.html', 
+                            array('html' => 'Error authorize user'));
+                    } else {
+                        $this->tweetConnector->redirect(TWEET_DEMO_REPORT_URL);
+                    }
+                }
+                if ($this->get('handle')) {
+                    $reportData = $this->tweetConnector
+                    ->getHandleData($this->get('handle'), $this->get('limit'));
+                    return $this->renderEngine->render('report.html', 
+                        array('data'=>$reportData));
+                }
+                return $this->renderEngine->render('handler_form.html');
+            } else {
+                $token = $this->tweetConnector->requestToken();
+                if ($token === false) {
                     $this->clearSession();
-                    $this->renderEngine->render('error.html', 
-                        array('html' => 'Error authorize user'));
-                } else {
-                    $this->tweetConnector->redirect(TWEET_DEMO_REPORT_URL);
+                    return $this->renderEngine->render('error_page.html', 
+                        array(
+                            'html' => "There was an error communicating with Twitter.<br>
+                            {$this->tweetConnector->response['response']}"));
                 }
             }
-            if ($this->get('handle')) {
-                $reportData = $this->tweetConnector
-                ->getHandleData($this->get('handle'), $this->get('limit'));
-                return $this->renderEngine->render('report.html', 
-                    array('data'=>$reportData));
-            }
-            return $this->renderEngine->render('handler_form.html');
-        } else {
-            $token = $this->tweetConnector->requestToken();
-            if ($token === false) {
-                $this->clearSession();
-                return $this->renderEngine->render('error.html', 
-                    array(
-                        'html' => "There was an error communicating with Twitter.<br>
-                        {$this->tweetConnector->response['response']}"));
-            }
+        } catch (\Exception $ex) {
+            return $this->renderEngine->render('error_page.html', 
+                array('html' => $ex->getMessage()));
         }
     }
 

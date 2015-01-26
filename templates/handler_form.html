@@ -1,6 +1,15 @@
+{% extends "layout/base.html" %}
+
+{% block content %}
+
 <h1>You are authorized</h1>
 <form method='get'>
-  <legend for='handle'>Enter Handle:</legend>
-  <input type='text' name='handle' id='handle' />
-  <input type='submit' value='Show Report' />
+  <div class="form-group">
+    <label for="handle">Enter Handle:</label>
+    <input type='text' class="form-control" placeholder="@username" name='handle' id='handle' />
+  </div>  
+  <div class="form-group">
+    <input class="btn btn-primary" type='submit' value='Show Report' />
+  </div>  
 </form>
+{% endblock %}

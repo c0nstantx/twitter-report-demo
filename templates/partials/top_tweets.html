@@ -1,0 +1,27 @@
+    <img src="images/top_tweets_bg.png" />
+    {% for tweet in data.processed_data.top_retweets %}
+      <div class="top-tweet">
+        <div class="badge">
+          {% if loop.index == 1 %}
+            <img src="images/ribbon_1st.png" />
+          {% elseif loop.index == 2 %}
+            <img src="images/ribbon_2nd.png" />
+          {% else %}
+            <img src="images/ribbon_3rd.png" />
+          {% endif %}
+        </div>
+        <div class="body tweet-content">
+          <div class="tweet-date col-xs-12">
+            <div class="glyphicon glyphicon-calendar"></div>
+            {{tweet.created_at|date("d.m.Y")}}
+          </div>
+          {{tweet.text}}
+        </div>
+        <div class="retweets-block">
+          <div class="count">
+            {{tweet.retweeted_status.retweet_count}}
+          </div>
+          <div class="glyphicon glyphicon-retweet icon"></div>
+        </div>
+      </div>
+    {% endfor %}
