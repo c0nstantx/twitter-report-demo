@@ -32,7 +32,8 @@ class Kernel
                     $this->get('oauth_verifier'));
                 if (!$status) {
                     $this->clearSession();
-                    $this->renderEngine->render('error.html', array('html' => 'Error authorize user');
+                    $this->renderEngine->render('error.html', 
+                        array('html' => 'Error authorize user'));
                 } else {
                     $this->tweetConnector->redirect(TWEET_DEMO_REPORT_URL);
                 }
@@ -40,7 +41,8 @@ class Kernel
             if ($this->get('handle')) {
                 $reportData = $this->tweetConnector
                 ->getHandleData($this->get('handle'), $this->get('limit'));
-                return $this->renderEngine->render('report.html', array('data'=>$reportData));
+                return $this->renderEngine->render('report.html', 
+                    array('data'=>$reportData));
             }
             return $this->renderEngine->render('handler_form.html');
         } else {
