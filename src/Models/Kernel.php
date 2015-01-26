@@ -26,6 +26,11 @@ class Kernel
      */
     public function parseRequest()
     {
+        if ($this->get('clear_session')) {
+            $this->clearSession();
+            $this->tweetConnector->redirect(TWEET_DEMO_REPORT_URL);
+        }
+
         if ($this->tweetConnector->userIsAuthorized()) {
             if ($this->get('oauth_verifier')) {
                 $status = $this->tweetConnector->verifyUser(
