@@ -48,6 +48,7 @@
   <hr>
   <h2>Peak Engagement</h2>
   {{data.processed_data.peak_engagement_tweet.created_at|date("d.M Y")}}<br>
-  {{data.processed_data.peak_engagement_tweet.text}} ({{data.processed_data.peak_engagement_tweet.retweeted_status.retweet_count}} retweets, {{data.processed_data.peak_engagement_tweet.retweeted_status.favorite_count}} favorites)
+  {{data.processed_data.peak_engagement_tweet.text}} ({{data.processed_data.peak_engagement_tweet.retweeted_status.retweet_count}} retweets, {{data.processed_data.peak_engagement_tweet.retweeted_status.favorite_count}} favorites)<br>
+  +{{data.processed_data.peak_difference|round(0)}}% above average
 {% endif %}
 {% endblock %}
