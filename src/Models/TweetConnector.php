@@ -203,7 +203,6 @@ class TweetConnector
 
         $this->canonicalizeCalendar($calendarActivity);
         ksort($calendarActivity);
-        var_dump($calendarActivity);
 
         /* Extract top retweets list */
         ksort($topRetweets, SORT_NUMERIC);
