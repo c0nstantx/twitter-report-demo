@@ -2,7 +2,7 @@ Tweeter Report Generator (DEMO)
 -------------------------------
 
 This is a simple report generator for tweeter accounts.
-In order to run the generator, just clone the repository and run composer update to install the dependencies.
+In order to run the generator, just clone the repository and run composer to install the dependencies.
 
     $ git clone https://github.com/c0nstantx/twitter-report-demo.git
     
